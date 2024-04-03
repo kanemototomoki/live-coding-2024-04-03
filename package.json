@@ -1,0 +1,24 @@
+{
+  "name": "live-coding-2024-04-03",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro build && wrangler pages dev ./dist",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy ./dist",
+    "build-cf-types": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/cloudflare": "^10.0.2",
+    "astro": "^4.5.14",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240402.0",
+    "wrangler": "^3.44.0"
+  }
+}
