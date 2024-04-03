@@ -11,7 +11,12 @@
     <title>Astro</title>
   </head>
   <body>
-    <h1>Astro</h1>
+    <section class="key-visual">
+      <div class="wrapper">
+        <h1 class="title">WEB DESIGN SPECIALIST</h1>
+        <p class="sub-title">お客様の夢を叶えるWebサイトを制作</p>
+      </div>
+    </section>
   </body>
 </html>
 
@@ -19,5 +24,78 @@
   * {
     margin: unset;
     padding: unset;
+  }
+
+  @font-face {
+    font-family: "Noto Sans JP";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/notosans/NotoSansJP-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Tanuki Magic";
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/tanukimagic/TanukiMagic.ttf") format("truetype");
+  }
+
+  *,
+  ::before,
+  ::after {
+    --clamp-root-font-size: 16;
+    --clamp-slope: calc(
+      (var(--clamp-max) - var(--clamp-min)) /
+        (var(--clamp-viewport-max) - var(--clamp-viewport-min))
+    );
+    --clamp-y-axis-intersection: calc(
+      var(--clamp-min) - (var(--clamp-slope) * var(--clamp-viewport-min))
+    );
+    --clamp-preffered-value: calc(
+      var(--clamp-y-axis-intersection) * (1rem / var(--clamp-root-font-size)) +
+        (var(--clamp-slope) * 100vi)
+    );
+    --clamp: clamp(
+      calc(var(--clamp-min) * (1rem / var(--clamp-root-font-size))),
+      var(--clamp-preffered-value),
+      calc(var(--clamp-max) * (1rem / var(--clamp-root-font-size)))
+    );
+
+    font-size: var(--clamp);
+  }
+
+  /* bodyにデフォルト値を設定する */
+  body {
+    --clamp-viewport-min: 375;
+    --clamp-viewport-max: 1440;
+    --clamp-min: 14;
+    --clamp-max: 16;
+  }
+
+  .key-visual {
+    color: #fff;
+    .wrapper {
+      background: url("/images/hero.png") no-repeat center center;
+      background-size: cover;
+      min-height: 100svh;
+      display: grid;
+      place-content: center;
+      text-align: center;
+
+      .title {
+        /* font-size: 72px; */
+        --clamp-min: 40;
+        --clamp-max: 72;
+        font-family: "Noto Sans JP";
+      }
+
+      .sub-title {
+        --clamp-min: 18;
+        --clamp-max: 24;
+		font-family: "Tanuki Magic";
+      }
+
+    }
   }
 </style>
